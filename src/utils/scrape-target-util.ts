@@ -45,16 +45,21 @@ export const scrapeTarget = async (config: { [key: string]: string }) => {
     await page.goto('https://www.target.com')
     const accountDropdown = await page.$('#account')
     await accountDropdown.click()
-
-    await page.waitForTimeout(6000)
+    try {
+      await page.waitForTimeout(6000)
+    } catch (error) {
+      await page.reload()
+    }
     const signInButton = await page.$('#accountNav-signIn')
     await signInButton.click()
     await page.waitForTimeout(6000)
+
     await page.type('#username', targetEmail)
     await page.type('#password', targetPassword)
     await page.keyboard.press('Enter')
 
     await page.waitForTimeout(6000)
+
     const isJoinRequest = await page.$('#circle-join-free')
     if (isJoinRequest) {
       console.log('join request exists')
@@ -71,7 +76,11 @@ export const scrapeTarget = async (config: { [key: string]: string }) => {
     //   'https://www.target.com/p/dualsense-wireless-controller-for-playstation-5/-/A-81114477'
     // )
 
-    await page.waitForTimeout(4000)
+    try {
+      await page.waitForTimeout(4000)
+    } catch (error) {
+      await page.reload()
+    }
 
     while (true) {
       try {
