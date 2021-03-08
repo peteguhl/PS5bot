@@ -176,7 +176,10 @@ export const scrapeTarget = async (config: { [key: string]: string }) => {
     // await placeOrderButton.click()
   } catch (error) {
     console.log(error)
+    // import { GluegunToolbox } from 'gluegun'
+    // import { PLAYSTATION_DIRECT, TARGET, WALMART } from '../contants'
+    // await scrape(TARGET)
   } finally {
-    // await browser.close();
+    await browser.close()
   }
 }

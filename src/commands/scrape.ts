@@ -24,7 +24,13 @@ module.exports = {
       ])
     } else {
       if (sitesToScrape.includes(TARGET)) {
-        await scrape(TARGET)
+        try {
+          await scrape(TARGET)
+        } catch (error) {
+          await scrape(TARGET)
+        } finally {
+          //  await browser.close()
+        }
       } else if (sitesToScrape.includes(WALMART)) {
         await scrape(WALMART)
       } else {
