@@ -26,7 +26,7 @@ export const scrapeTarget = async (config: { [key: string]: string }) => {
 
   const browser = await puppeteer.launch({
     headless: false,
-    args: ['--window-size=1920,1080'],
+    args: ['--window-size=1920,1080', '--disable-gpu'],
     defaultViewport: null
   })
 
